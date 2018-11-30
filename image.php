@@ -2,6 +2,8 @@
 require_once('inc/bdd.php');
 if(!empty($_GET['delete']) && is_numeric($_GET['delete'])){
 	$image = $_GET['image'];
+	var_dump($image);
+	var_dump($_GET['delete']);
 	$delete = $connexion->prepare('DELETE FROM slider WHERE id = :id'); 
 	$delete->bindValue(':id', $_GET['delete']);
 	if($delete->execute()){
@@ -137,7 +139,7 @@ if(!empty($_FILES)){
                     $slider = $resultat->fetchAll();
                      foreach($slider as $image){
                          ?>
-                        <div value="<?= $image['id'] ?>" ><img src="images_uploadees/miniatures/<?= $image['image'] ?>"> <a href="image.php?delete=<?= $image['id'] ?>&image=$image['image']">Supprimer l'image</a></div>
+                        <div value="<?= $image['id'] ?>" ><img src="images_uploadees/miniatures/<?= $image['image'] ?>"> <a href="image.php?delete=<?= $image['id'] ?>&image=<?=$image['image']?>">Supprimer l'image</a></div>
                         <?php
                         }
                     ?>
