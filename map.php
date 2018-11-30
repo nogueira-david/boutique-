@@ -1,5 +1,5 @@
 <?php
-require('../inc/bdd.php');
+require('inc/bdd.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,18 +15,17 @@ require('../inc/bdd.php');
         </style>
     </head>
     <body>
-        <form>
-            <input type="text" name="adresse">
-            <button type="submit">Afficher</button>
-        </form>
         <?php
-
-        $select = $connexion->query('SELECT adresse_shop_lat FROM shop');
-        $address = $select->fetch();
-
-        var_dump($address);      
+              $select = $connexion->query('SELECT adresse_shop_lat FROM shop');
+        $address = $select->fetch();      
             
             $map_address = $address['adresse_shop_lat'];
+         ?>
+         <form method="POST">
+            <input type="text" name="address">
+            <button type="submit">Afficher</button>
+        </form>
+        <?php 
             
             $opts = array(
                     'http' => array(
