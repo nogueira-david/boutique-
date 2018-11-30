@@ -1,6 +1,5 @@
 <?php
 
-
 try{//pour éviter de donner nos identifiants de connexion en cas d'erreur
 	$connexion = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'root', '',
 		array(
