@@ -10,9 +10,6 @@ require('inc/bdd.php');
   <div style="padding-bottom:100px" class="container">
   <div class="row">
   <div class="col-md-12">
-  <hr>
-  <div class="alert alert-info"><b>INFOS:</b> Ce formulaire est une démo, le fonctionnement est complet mais le message n'arrivera nul part, les spammer peuvent passer leur chemin!</div>
-  <hr>
   </div>
   </div>
   </div>
@@ -48,12 +45,6 @@ require('inc/bdd.php');
   <textarea required id="inputmessage" name="message" class="form-control"><?php echo isset($_SESSION['inputs']['message'])? $_SESSION['inputs']['message'] : ''; ?></textarea>
   </div><!--/*.form-group-->
   </div><!--/*.col-md-12-->
-<div class="col-md-12">
-  <div class="checkbox">
-  <label for="checkspam">
-  <input type="checkbox" name="antispam" id="checkspam">Je suis un spammer et je l'assume!
-  </label>
-  </div>
   </div><!--/*.col-md-12-->
 <div class="col-md-12">
   <button type='submit' class='btn btn-primary'>Envoyer</button>
