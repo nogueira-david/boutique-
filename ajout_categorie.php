@@ -1,3 +1,6 @@
+<?php 
+session_start();
+require_once('inc/bdd.php'); ?>
 <!DOCTYPE html>
 <html>
     <head>

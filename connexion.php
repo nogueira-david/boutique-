@@ -34,7 +34,7 @@ session_start();
 
 		} else {
 
-			$result = $connexion->prepare('SELECT email, password, role FROM users WHERE email = :email');
+			$result = $connexion->prepare('SELECT id_users, pseudo, email, password, role FROM users WHERE email = :email');
 			$result->bindValue(':email', $post['email']);
 			$result->execute();
 			$user = $result->fetchAll();
@@ -42,6 +42,7 @@ session_start();
 				echo 'Vous etes connécté!';
 				echo '<a href="deconnexion.php"><button>Deconnection</button></a>';
 				echo '<a href="index.php"><button>Index</button></a>';
+				$_SESSION['id'] = $user[0]['id_users'];
 				$_SESSION['email'] = $user[0]['email'];
 				$_SESSION['mdp'] = $user[0]['password'];
 				$_SESSION['role'] = $user[0]['role'];
