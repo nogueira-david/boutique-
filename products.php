@@ -1,4 +1,4 @@
-
+<?php require_once('inc/bdd.php'); ?>
 <?php      
     $resultat = $connexion->query('SELECT * FROM products ORDER BY creation_date DESC LIMIT 10 OFFSET 0');//LIMIT 0,10
     //LIMIT 5,10 est équivalent à LIMIT 10 OFFSET 5)
