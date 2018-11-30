@@ -1,3 +1,6 @@
+<?php
+require('../inc/bdd.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,9 +24,9 @@
         $select = $connexion->query('SELECT adresse_shop_lat FROM shop');
         $address = $select->fetch();
 
-        var_dump($adress);      
+        var_dump($address);      
             
-            $map_address = $address;
+            $map_address = $address['adresse_shop_lat'];
             
             $opts = array(
                     'http' => array(
