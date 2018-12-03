@@ -1,9 +1,8 @@
 <?php
-require('inc/bdd.php');
+include('inc/top_header.php');
+include('inc/bot_header.php');
 ?>
-<?php
-  session_start();
-  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,16 +31,17 @@ require('inc/bdd.php');
                 <div class="col-md-8 col-md-offset-2">
                   <form class="form-horizontal">
                     <div class="form-group">
-                      <label for="exampleInputName2">Nom : </label><br>
+                      <label for="exampleInputName2">Nom :</label>
                       <input type="text" class="form-control" id="exampleInputName2" placeholder="Contact">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail2">Email : </label><br>
+                      <label for="exampleInputEmail2">Email :</label>
                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="contact@shop.com">
                     </div>
                     <div class="form-group ">
-                      <label for="exampleInputText">Votre Message : </label><br>
-                     <textarea  class="form-control" placeholder="Description : "></textarea> 
+                      <label for="exampleInputText">Votre Message :</label>
+                     <textarea  class="form-control" placeholder="Description"></textarea> 
+
                     </div>
                     <button class="btn" type="submit">Envoyer</button>
                   </form>

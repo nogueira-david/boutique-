@@ -60,7 +60,12 @@ textarea:placeholder-shown {
 	background-color: gray; 
 }
 
-.btn a{
+
+h2{
+	margin: 25px 0 50px 0!important; 
+}
+
+a{
 	color:#26a5d3;
 	font-size: 3.5rem;
 }

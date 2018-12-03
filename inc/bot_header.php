@@ -10,7 +10,6 @@
       <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
       <!-- si pas connecté -->
-      <?php if(!isset($_SESSION['id'])){ ?>
           <li class="nav-item active">
             <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
           </li>
@@ -18,12 +17,15 @@
                 <a class="nav-link" href="products.php">Products</a>
           </li>
           <li class="nav-item active">
-                <a class="nav-link" href="connexion.php">Log in</a>
+                <a class="nav-link" href="login.php">Log in</a>
           </li>
           <li class="nav-item active">
-                <a class="nav-link" href="inscription.php">Registration</a>
+                <a class="nav-link" href="login.php">Registration</a>
           </li>
-      <?php }
+          <li class="nav-item active">
+                <a class="nav-link" href="contact.php">Contact</a>
+          </li>
+      <?php 
         //si connecté
           if(isset($_SESSION['id'])){
               ?>
@@ -31,10 +33,10 @@
                 <a class="nav-link" href="profil.php">Profile</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="demande_reset.php">Change your password</a>
+                <a class="nav-link" href="reset_mdp.php">Change your password</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="deconnexion.php">Sign out</a>
+                <a class="nav-link" href="deconnexion.php?deco=deco">Sign out</a>
               </li>
               <!-- Si admin -->
               <?php if($_SESSION['role'] === 'ROLE_ADMIN'){ ?>
