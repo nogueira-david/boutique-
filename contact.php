@@ -27,15 +27,15 @@ require('inc/bdd.php');
                 <div class="col-md-8 col-md-offset-2">
                   <form class="form-horizontal">
                     <div class="form-group">
-                      <label for="exampleInputName2">Nom</label>
+                      <label for="exampleInputName2">Nom :</label>
                       <input type="text" class="form-control" id="exampleInputName2" placeholder="Contact">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail2">Email</label>
+                      <label for="exampleInputEmail2">Email :</label>
                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="contact@shop.com">
                     </div>
                     <div class="form-group ">
-                      <label for="exampleInputText">Votre Message</label>
+                      <label for="exampleInputText">Votre Message :</label>
                      <textarea  class="form-control" placeholder="Description"></textarea> 
                     </div>
                     <button type="submit" class="btn btn-default">Envoyer</button>
