@@ -21,13 +21,13 @@ $products = $select->fetchAll();
         <article class="container row m-auto">       
             <h2 class="text-center">
             <p><img src="images_uploadees/<?php echo $product['picture'];?>"></p>
-            créé le <?php echo  $product['creation_date']; ?>
-            <p><?php echo  $product['price']. '$'; ?></p>
+            Crée le <?php echo  $product['creation_date']; ?>
+            <p> Prix : <?php echo  $product['price']. '$'; ?></p>
             <p><?php 
-            	if ($product['product_available'] === 1){
-            		echo "produit disponible";
+            	if ($product['product_available'] === '1'){
+            		echo "Produit disponible";
             	} else {
-            		echo "produit indisponible";
+            		echo "Produit indisponible";
             	}
             	?>
 
