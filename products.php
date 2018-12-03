@@ -1,3 +1,4 @@
+
 <?php 
  require_once('inc/bdd.php');
 include ('inc/top_header.php');
@@ -89,3 +90,5 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
     ?>
 
 </div>
+</body>
+</html>

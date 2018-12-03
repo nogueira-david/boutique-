@@ -4,29 +4,36 @@
 	margin: 0 auto;
 	margin-top: 30px; 
 	width: 1780px;
-	background-image: url(../img/image_fond_1.jpg);
 	background-size: contain; 
 	height: 80vh;
 	background-position: center;
 	background-repeat: no-repeat;
 }
 
+.picto{
+	position: absolute;
+	top: 20px;
+	right: 40px;
+	z-index: 9999;
+}
+
 .picto i{
-	float: right;
-	padding-right: 50px; 
-	padding-top: 30px; 
 	font-size: 1.5rem;
 }
 
 .slogan{
-	text-align: center;
-	padding-top: 15%; 
+	top: 35%;
+	left : 40%;
+	position: absolute;
+	z-index: 9998;
+
 }
 
 .background h1{
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold; 
 	font-size: 6rem; 
+	text-align: center; 
 }
 
 .background h2{
@@ -34,6 +41,7 @@
 	font-weight: bolder; 
 	font-size: 3rem; 
 	margin-top: -30px;
+	text-align: center; 
 }
 
 /* carré */
