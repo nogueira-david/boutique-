@@ -70,7 +70,7 @@ require_once('inc/bdd.php'); ?>
                     
                                     //------Création de la miniature
                                     //je décide que mes miniatures deront 100px de large
-                                    $newWidth = 100;
+                                    $newWidth = 250;
                     
                                     if($extension === 'jpg' || $extension === 'jpeg'){
                                         $newImage = imagecreatefromjpeg($_FILES['file']['tmp_name']);
@@ -176,12 +176,13 @@ require_once('inc/bdd.php'); ?>
                     }
                                         
                     if(empty($errors)){
-                        $insert = $connexion->prepare('INSERT INTO products (product_name, price, product_available, creation_date, picture) VALUES (:name, :price, :availability, :creationdate, :picture)');
+                        $insert = $connexion->prepare('INSERT INTO products (product_name, price, product_available, creation_date, picture, miniature) VALUES (:name, :price, :availability, :creationdate, :picture, :miniature)');
                         $insert->bindValue(':name', strip_tags($post['name']));
                         $insert->bindValue(':price', strip_tags($post['price']));
                         $insert->bindValue(':availability', $available);
                         $insert->bindValue(':creationdate', date('Y-m-d H:i:s'));
                         $insert->bindValue(':picture', $newName . '.' . $extension);
+                        $insert->bindValue(':miniature', $newName . '.' . $extension);
                         if($insert->execute()){
                             echo '<div class="alert alert-success">Article ajouté</div>';
                             $idProduct = $connexion->lastInsertId();

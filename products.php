@@ -41,6 +41,7 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
     ?>
         <article>       
             <h2>
+            <p><img src="images_uploadees/miniatures/<?php echo $article['miniature'];?>"></p>
                 <?php 
 
                 $productNameRecherche = preg_replace('#(' .strip_tags($_GET['recherche']). ')#', "<span style='background-color : #f5dbbe;'>$1</span>" , $article['product_name']);
@@ -49,7 +50,6 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
             </h2>
             créé le <?php echo  $article['creation_date']; ?>
             <p><?php echo  $article['price']; ?></p>
-            <p><img src="images_uploadees/<?php echo $article['picture'];?>"></p>
         </article>
 
 
