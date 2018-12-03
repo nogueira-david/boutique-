@@ -9,6 +9,7 @@ h1,h2,h3 {
 	font-family: 'Roboto', sans-serif;
 	text-transform: uppercase;
 	letter-spacing:1px;
+	font-size: 35px;
 }
 
 a{
@@ -17,6 +18,13 @@ a{
 a:hover,a:focus{
 	text-decoration:none;
 	color:#26a5d3;
+}
+p{
+	font-size: 20px;
+}
+
+label{
+	font-size: 15px;
 }
 
 #contact{
@@ -32,5 +40,7 @@ textarea.form-control{
 #map{
      height: 400px;
      width: 60%;
-     margin: 80px; 
+     margin: auto;
+     margin-top: 50px;
+     margin-bottom: 30px; 
 } 
