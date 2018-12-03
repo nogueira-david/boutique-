@@ -10,6 +10,8 @@ session_start();
 <body>
 	<?php 
 	require_once('inc/bdd.php');
+if (empty($_SESSION)) {
+
 
 	if(!empty($_POST)){
 
@@ -28,7 +30,7 @@ session_start();
 			$errors[] = 'mot de passe Incorrect';
 		}
 
-		if (!empty($errors) && $post['email'] != $_SESSION['email']){
+		if (!empty($errors)){
 			echo implode ($errors);
 			echo '<a href=index.php>Index</a>';
 
@@ -54,6 +56,8 @@ session_start();
 		// header('location:index.php');}
 		echo 'Erreur de connexion: formulaire de connexion vide';
 	}
+} else { echo "You're already connected, if you need to get connected with another account, please deconnect this accound first.";
+}
 	?>
 
 </body>

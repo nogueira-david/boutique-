@@ -11,7 +11,6 @@ session_start();
 
 <?php
 if (!empty($_GET['recherche'])) {
-    echo "recherche ok";
 
     $select = $connexion->prepare('SELECT * FROM products WHERE product_name LIKE :recherche');
     $select->bindValue(':recherche', '%' .$_GET['recherche'] . '%');
