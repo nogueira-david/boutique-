@@ -39,6 +39,7 @@ require_once('inc/bdd.php'); ?>
                         $available = 1; 
                     }
                     
+                    $newName = $extension = '';
                     if(!empty($_FILES)){
                         //on m'a envoyé au moins un fichier, je peux faire le traitement
                     
@@ -131,6 +132,7 @@ require_once('inc/bdd.php'); ?>
                             echo 'erreur lors du transfert';
                         }
                     }
+                                        
                 	if(empty($errors)){
                 		$insert = $connexion->prepare('INSERT INTO products (product_name, price, product_available, creation_date, picture) VALUES (:name, :price, :availability, :creationdate, :picture)');
                 		$insert->bindValue(':name', strip_tags($post['name']));
