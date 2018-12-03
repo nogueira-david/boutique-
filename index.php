@@ -1,15 +1,6 @@
-<?php 
-session_start();
-var_dump($_SESSION);
-include('inc/header.php');
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
+<?php include('inc/top_header.php'); ?>
 	<title>Inscription</title>
-</head>
-<body>
+<?php include('inc/bot_header.php'); ?>
 	<h1>Inscription</h1>
 	<hr>
 	<form action="inscription.php" method="POST">
@@ -28,9 +19,9 @@ include('inc/header.php');
 		<input type="email" name="email"><br>
 		<label>Mot de passe</label><br>
 		<input type="text" name="password"><hr>
-		<button>Connection</button>
+		<button>Connexion</button>
 	</form>
-	<a href="deconnexion.php?deco=set"><button>Deconnection</button></a>
+	<a href="deconnexion.php?deco=set"><button>Deconnexion</button></a>
 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
