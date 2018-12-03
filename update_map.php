@@ -1,20 +1,12 @@
-<?php
-require('inc/bdd.php');
-?>
-<!DOCTYPE html>
-<html>
-    <head>
+<?php include('inc/top_header.php'); ?>
         <title>Geocoding service</title>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
         <style>
            #map {
             height: 400px;
             width: 100%;
            }
         </style>
-    </head>
-    <body>
+<?php include('inc/bot_header.php'); ?>
         <?php
 
          if (!empty($_POST['address'])) {

@@ -1,7 +1,6 @@
-<?php 
-require_once('inc/bdd.php');
-include('inc/top_header.php');
-include('inc/bot_header.php');
+<?php include('inc/top_header.php'); ?>
+<title>Admin management</title>
+<?php include('inc/bot_header.php'); 
 if($_SESSION['role'] === 'ROLE_ADMIN'){ ?>
 
 
