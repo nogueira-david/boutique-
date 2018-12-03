@@ -4,6 +4,7 @@
 include ('inc/top_header.php');
   ?>
 <title>Products</title>
+<link rel="stylesheet" href="css/products.css">
 <?php 
 include ('inc/bot_header.php');
  ?>
@@ -57,6 +58,7 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
             </h2>
             créé le <?php echo  $article['creation_date']; ?>
             <p><?php echo  $article['price']. '$'; ?></p>
+            <a href="detail_product.php?id=<?=$article['id']?>"></a>
         </article>
 
 
@@ -82,6 +84,7 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
             </h2>
             créé le <?php echo  $product['creation_date']; ?>
             <p><?php echo  $product['price']. '$'; ?></p>
+            <a href="detail_product.php?id=<?=$product['id']?>"> + details</a>
         </article>
 
     <?php
