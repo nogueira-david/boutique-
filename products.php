@@ -1,6 +1,11 @@
 <?php 
-session_start();
- require_once('inc/bdd.php'); ?>
+ require_once('inc/bdd.php');
+include ('inc/top_header.php');
+  ?>
+<title>Products</title>
+<?php 
+include ('inc/bot_header.php');
+ ?>
 
 
 <form>
@@ -14,6 +19,7 @@ session_start();
     </select>
     <button>Envoyer</button>
 </form>
+<div class="container row m-auto">
 
 <?php
 if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
@@ -39,8 +45,8 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
     $articles = $select->fetchAll();
     foreach($articles as $article){
     ?>
-        <article>       
-            <h2>
+        <article class="col-3">       
+            <h2 class="text-center">
             <p><img src="images_uploadees/miniatures/<?php echo $article['miniature'];?>"></p>
                 <?php 
 
@@ -49,7 +55,7 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
                 echo $productNameRecherche; ?>
             </h2>
             créé le <?php echo  $article['creation_date']; ?>
-            <p><?php echo  $article['price']; ?></p>
+            <p><?php echo  $article['price']. '$'; ?></p>
         </article>
 
 
@@ -74,10 +80,12 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
                 <?php echo $product['product_name']; ?>
             </h2>
             créé le <?php echo  $product['creation_date']; ?>
-            <p><?php echo  $product['price']; ?></p>
+            <p><?php echo  $product['price']. '$'; ?></p>
         </article>
 
     <?php
     }
 }
     ?>
+
+</div>
