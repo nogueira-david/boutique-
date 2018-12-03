@@ -34,7 +34,7 @@
                 <a class="nav-link" href="demande_reset.php">Change your password</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="deconnexion.php">Sign out</a>
+                <a class="nav-link" href="deconnexion.php?deco=deco">Sign out</a>
               </li>
               <!-- Si admin -->
               <?php if($_SESSION['role'] === 'ROLE_ADMIN'){ ?>

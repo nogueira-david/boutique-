@@ -24,7 +24,7 @@ use PHPMailer\PHPMailer\Exception;
 
                     $token = md5(uniqid(rand(), true));
 
-                    $id_user = $users[0]['id'];
+                    $id_user = $users[0]['id_users'];
 
                     
                     $insert = $connexion->prepare('INSERT INTO reset_password (id_user, token) VALUES(:iduser, :token)');
@@ -60,12 +60,12 @@ use PHPMailer\PHPMailer\Exception;
 
                         $mail->send();
                         echo 'message envoyé';
-                        }
-                        catch (Exception $e){
-                            echo 'gros problème : ' . $mail->ErrorInfo;
-                        }
+                    }
+                    catch (Exception $e){
+                        echo 'gros problème : ' . $mail->ErrorInfo;
+                    }
 
-                        echo 'Veuillez cliquer <a href="http://localhost/promo8/boutique-/traitement_reset.php?id_user=' . $id_user .'&token=' . $token . '">ici</a>';
+                    echo 'Veuillez cliquer <a href="http://localhost/promo8/boutique-/traitement_reset.php?id_user=' . $id_user .'&token=' . $token . '">ici</a>';
                 }
                 else{
                     echo 'email inconnu';

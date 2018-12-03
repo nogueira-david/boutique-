@@ -1,12 +1,12 @@
 <?php
 include('inc/top_header.php');
+?>
+<title>traitement_reset</title>
+<?php
 include('inc/bot_header.php');
 ?>
     </head>
     <body>
-        <?php
-        include('inc/top_header.php');
-        ?>
         <div class="container">
             <div class="col-md-6">
             <?php
@@ -72,7 +72,7 @@ include('inc/bot_header.php');
 
                         if(!empty($tokens)){
 
-                            $update = $connexion->prepare('UPDATE users SET password = :mdp WHERE id = :iduser');
+                            $update = $connexion->prepare('UPDATE users SET password = :mdp WHERE id_users = :iduser');
                             $update->bindValue(':mdp', password_hash(trim(strip_tags($_POST['mdp'])), PASSWORD_DEFAULT));
                             $update->bindValue(':iduser', $_POST['idUser']);
                             if($update->execute()){
