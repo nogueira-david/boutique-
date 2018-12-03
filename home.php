@@ -1,18 +1,9 @@
-<!Doctype html>
-<html lang="Fr-fr">
-	<head>
+<?php include('inc/top_header.php'); ?>
 		<title>Online Shop</title>
-		<meta charset="utf-8">
 		<!--CSS-->
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<!--Javascript-->
 		<link rel="stylesheet" type="text/css" href="js/home.js">
-		<!--Typographies-->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
-		<!--Bootstrap-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<!--Icônes-->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	</head>
 
 	<body>
@@ -27,21 +18,29 @@
 					<h1>HELLO</h1>
 					<h2>ONE DAY ONE STYLE</h2>
 				</div>
-			    <div class="carousel-item active">
-			      <img class="d-block w-100" src="img/carousel/fond1.jpg" alt="First slide">
-			    </div>
-			    <div class="carousel-item">
-			       <img class="d-block w-100" src="img/carousel/fond2.jpg" alt="Second slide">
-			    </div>
-			    <div class="carousel-item">
-			       <img class="d-block w-100" src="img/carousel/fond3.jpg" alt="Third slide">
-			    </div>
-			    <div class="carousel-item">
-			       <img class="d-block w-100" src="img/carousel/fond4.jpg" alt="Four slide">
-			    </div>
+				<?php
+				require_once('inc/bdd.php');
+				$select = $connexion->query('SELECT * FROM slider');
+				$images = $select->fetchAll();
+				$cpt = 1;
+				foreach($images as $img){
+					$class = $cpt === 1 ? 'active' : '';
+				?>
+					<div class="carousel-item <?= $class ?>">
+			     		<img class="d-block w-100" src="img/carousel/<?= $img['image'] ?>" alt="<?= $img['image'] ?>">
+			    	</div>	
+		    	<?php
+		    		$cpt ++;
+		    	}				
+				?>
 			  </div>
 			</div>
 		</header>
+
+		<!--Import Header-->
+		
+		<title>Titre de la page</title>
+		
 
 		<!--Contenu principal -->
 		<main class="container5">
