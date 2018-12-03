@@ -1,15 +1,7 @@
-<?php 
-session_start();
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
+<?php include('inc/top_header.php'); ?>
 	<title>Connexion</title>
-</head>
-<body>
-	<?php 
-	require_once('inc/bdd.php');
+<?php include('inc/bot_header.php'); ?>
+<?php
 if (empty($_SESSION)) {
 
 
