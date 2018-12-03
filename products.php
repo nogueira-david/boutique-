@@ -6,13 +6,33 @@ session_start();
 <form>
     <label for="recherche">Recherche :</label>
     <input type="text" name="recherche">
+    <label>Trier par : </label>
+    <select name="order">
+        <option value="none">Trier par</option>
+        <option value="croissant">Prix croissants</option>
+        <option value="decroissant">Prix decroissants</option>
+    </select>
     <button>Envoyer</button>
 </form>
 
 <?php
-if (!empty($_GET['recherche'])) {
+if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
 
-    $select = $connexion->prepare('SELECT * FROM products WHERE product_name LIKE :recherche');
+    if (!empty($_GET['recherche'])){
+    $sql = 'SELECT * FROM products WHERE product_name LIKE :recherche';
+} else {
+     $sql = 'SELECT * FROM products';
+}
+
+    if( $_GET['order'] === "decroissant" ){
+        $sql .= ' ORDER BY price DESC';
+    }
+
+    if( $_GET['order'] === "croissant" ){
+        $sql .= ' ORDER BY price ASC';
+    }
+
+    $select = $connexion->prepare($sql);
     $select->bindValue(':recherche', '%' .$_GET['recherche'] . '%');
     $select->execute();
 
@@ -21,12 +41,21 @@ if (!empty($_GET['recherche'])) {
     ?>
         <article>       
             <h2>
-                <?php echo $article['product_name']; ?>
+                <?php 
+
+                $productNameRecherche = preg_replace('#(' .strip_tags($_GET['recherche']). ')#', "<span style='background-color : #f5dbbe;'>$1</span>" , $article['product_name']);
+
+                echo $productNameRecherche; ?>
             </h2>
             créé le <?php echo  $article['creation_date']; ?>
             <p><?php echo  $article['price']; ?></p>
             <p><img src="images_uploadees/<?php echo $article['picture'];?>"></p>
         </article>
+
+
+
+
+
 
     <?php
     
