@@ -62,24 +62,6 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
     } 
 } else {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $resultat = $connexion->query('SELECT * FROM products ORDER BY creation_date DESC LIMIT 10 OFFSET 0');//LIMIT 0,10
     //LIMIT 5,10 est équivalent à LIMIT 10 OFFSET 5)
 
@@ -87,12 +69,12 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
     foreach($products as $product){
     ?>
         <article>		
+            <p><img src="images_uploadees/miniatures/<?php echo $product['picture'];?>"></p>
             <h2>
                 <?php echo $product['product_name']; ?>
             </h2>
             créé le <?php echo  $product['creation_date']; ?>
             <p><?php echo  $product['price']; ?></p>
-            <p><img src="images_uploadees/<?php echo $product['picture'];?>"></p>
         </article>
 
     <?php
