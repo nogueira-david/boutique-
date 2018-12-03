@@ -5,6 +5,7 @@ article{
 button{
 	border: none;
 	padding: 10px;
-	color: blue;
+	color: #232222;
 	background-color: transparent;
+	font-size: 0.6rem;
 }

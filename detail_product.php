@@ -39,3 +39,5 @@ $products = $select->fetchAll();
 }
 ?>
 </div>
+</body>
+</html>
