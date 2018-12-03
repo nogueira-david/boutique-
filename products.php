@@ -1,3 +1,4 @@
+
 <?php 
 include ('inc/top_header.php');
 ?>
@@ -54,7 +55,8 @@ include ('inc/bot_header.php');
         ?>
         <article class="col-3">       
             <h2 class="text-center">
-                <p><img src="images_uploadees/miniatures/<?php echo $article['miniature'];?>"></p>
+            <p><img src="images_uploadees/miniatures/<?php echo $article['picture'];?>"></p>
+
                 <?php 
 
                 $productNameRecherche = preg_replace('#(' .strip_tags($_GET['recherche']). ')#', "<span style='background-color : #f5dbbe;'>$1</span>" , $article['product_name']);
@@ -104,3 +106,5 @@ include ('inc/bot_header.php');
 ?>
 
 </div>
+</body>
+</html>

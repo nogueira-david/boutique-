@@ -44,55 +44,9 @@ if(!empty($_FILES)){
 				$newName = md5(uniqid(rand(), true)); 
 				/*echo $newName; */
 
-				// ------------------ Création d'une miniature
-				// je décide que mes miniatures seront de 100px de large
-				$newWidth = 100; 
-
-				if($extension == 'jpg' || $extension === 'jpeg'){
-					$newImage = imagecreatefromjpeg($_FILES['fichier']['tmp_name']); 
-				}
-				elseif($extension === 'png'){
-					$newImage = imagecreatefrompng($_FILES['fichier']['tmp_name']); 
-				}
-				
-				// je vais devoir calculer la hauteur de ma miniature
-				// largeur originale (en px) 
-
-				$oldWidth = imagesx($newImage); 
-
-				// hauteur originale 
-
-				$oldHeight = imagesy($newImage); 
-
-				// calcul de la nouvelle hauteur 
-
-				$newHeight = ($oldHeight * $newWidth) / $oldWidth; 
-
-				// je crée une nouvelle image avec les dimensions (nouvelle largeur et nouvelle hauteur)
-
-				$miniature = imagecreatetruecolor($newWidth, $newHeight); 
-
-				// on remplit la miniature à partir de l'image originale 
-
-				imagecopyresampled($miniature, $newImage, 0, 0, 0, 0, $newWidth, $newHeight, $oldWidth, $oldHeight); 
-
-				// chemin vers le dossier ou je stocke mes miniatures
-
-				$folder = 'images_uploadees/miniatures/'; 
-
-				if($extension === 'jpg' || $extension === 'jpeg'){
-					imagejpeg($miniature, $folder . $newName . '.' .$extension); 
-				}
-				elseif($extension === 'png'){
-					imagepng($miniature, $folder . $newName . '.' .$extension); 
-				}
-				elseif($extension === 'gif'){
-					imagegif($miniature, $folder . $newName . '.' .$extension); 
-				}
-
-				// je peux transferer le fichier sur le serveur 
+			// je peux transferer le fichier sur le serveur 
 				move_uploaded_file($_FILES['fichier']['tmp_name'],
-			 'images_uploadees/' .$newName. '.' .$extension); 
+			 'img/carousel/' .$newName. '.' .$extension); 
 			}
 
 			// se connecter à la base et effectuer la requête pour insérer les infos dans la base
