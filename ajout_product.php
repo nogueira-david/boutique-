@@ -5,9 +5,10 @@
         <div class="container">
         <div class="row">
             <div class="col-md-6">
+                <!----------------------------- AJOUT DE PRODUIT ----------------------------->
                 <h1>Add a product</h1>
                 <?php
-                if(!empty($_POST)){
+                if(!empty($_POST['ajout'])){
 
                     $errors = [];
 
@@ -241,8 +242,174 @@
                                 ?>
                         </select>
                         </div>
+                    <input type="hidden" name="ajout">
                     <button type="submit" class="btn btn-success">Add</button>
                 </form>
+
+                <hr>
+                <!----------------------------- MODIFICATION DE PRODUIT ----------------------------->
+
+                            <h2>Edit product</h2>
+                        <?php
+                                if(!empty($_POST['id'])){
+                                    //formulaire de modification envoyé
+                                    $post = [];
+        
+                                    foreach($_POST as $key => $value){
+                                        $post[$key] = strip_tags(trim($value));
+                                    }
+        
+                                    $errors = [];
+        
+                                    if(empty($post['product']) || mb_strlen($post['product']) > 20){
+                                        $errors[] = 'empty or invalid product '; 
+                                    }
+
+                                    if(empty($post['price']) || !preg_match('#^[1-9][0-9]*\$$#', $post['price'])){
+                                        $errors [] = 'empty or invalid price';
+                                    }
+
+                                    if(!isset($post['availability']) ){
+                                        $available = 0;
+                                    }
+                                    else{
+                                        $available = 1; 
+                                    }
+        
+                                    $select = $connexion->prepare('SELECT id FROM products WHERE product_name = :product AND id <> :id');
+                                    $select->bindValue(':product', $post['product_name']);
+                                    $select->bindValue(':id', $post['id']);
+                                    $select->execute();
+                                    $categories = $select->fetchAll();
+                                    if(count($categories) > 0){
+                                        $errors[] = '<p class="alert alert-danger">produit déjà présent</p>';
+                                    }
+                                
+                                    if(empty($errors)){
+        
+                                        $update = $connexion->prepare('UPDATE products SET product_name = :name, price = :price, availability = :availability WHERE id = :id');
+                                        $update->bindValue(':id', $post['id']);
+                                        $update->bindValue(':name', $post['product_name']);
+                                        $update->bindValue(':price', $post['price']);
+                                        $update->bindValue(':availability', $post['availability']);
+                                        if($update->execute()){
+                                            echo '<p class="alert alert-success">edited category</p>';
+                                        }
+        
+                                    }
+                                    else{
+                                        echo implode('<br>', $errors);
+                                    }
+        
+                                }?>
+                            
+                            <form>
+                                <div class="form-group">
+                                    <label>Title</label>
+                                        <?php
+                                            $select = $connexion->query('SELECT * FROM products');
+                                            $products = $select->fetchAll();
+                                        ?>
+                                    <select name="products" class="form-control">
+                                        <option value="0">Choose a product</option>
+                                            <?php
+                                            foreach($products as $product){
+                                            ?>
+                                        <option value="<?= $product['id'] ?>"><?= $product['product_name'] ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="update">
+                                <button class="btn btn-default">Choose</button>
+                            </form>
+                            <?php
+
+                            if(!empty($_GET['products']) && preg_match("#^\d+$#", $_GET['products'])){
+                                //récupération des infos du produit
+                                $select = $connexion->prepare('SELECT * FROM products WHERE id = :id');
+                                $select->bindValue(':id', $_GET['products']);
+                                $select->execute();
+                                $products = $select->fetch();
+                                
+                                //affichage du formulaire de modif pré rempli
+                            ?>
+                            <hr>
+                            <form method="post">
+                                <div class="form-group">
+                                    <label>Product name</label>
+                                    <input type="text" name="product_name" class="form-control" value="<?= $products['product_name'] ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="text" name="price" class="form-control" value="<?= $products['price'] ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Product available</label>
+                                    <input type="checkbox" name="availability" class="form-control" value="<?= $products['product_available'] ?>">
+                                </div>
+                                <input type="hidden" name="id" value="<?= $_GET['products'] ?>">
+                                <button type="submit" class="btn btn-info">Edit</button>
+                            </form>
+
+                            <?php }?>
+
+                            <hr>
+                            <!----------------------------- SUPPRESSION DE PRODUIT ----------------------------->
+
+                             <h2>Delete product</h2>
+
+                                <?php
+                                    if(!empty($_POST['delete'])){
+                                    //formulaire de modification envoyé
+                                    $post = [];
+        
+                                    foreach($_POST as $key => $value){
+                                        $post[$key] = strip_tags(trim($value));
+                                    }
+        
+                                    $errors = [];
+        
+                                    if($post['delete'] === "0"){
+                                        $errors[] = 'empty or invalid category '; 
+                                    }
+                                
+                                    if(empty($errors)){
+        
+                                        $update = $connexion->prepare('DELETE FROM products WHERE id = :id');
+                                        $update->bindValue(':id', $post['delete']);
+                                        if($update->execute()){
+                                            echo '<p class="alert alert-success">deleted product</p>';
+                                        }
+        
+                                    }
+                                    else{
+                                        echo implode('<br>', $errors);
+                                    }
+        
+                                }?>
+                            
+                            <form method="post">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                        <?php
+                                            $select = $connexion->query('SELECT * FROM products');
+                                            $products = $select->fetchAll();
+                                        ?>
+                                    <select name="delete" class="form-control">
+                                        <option value="0">Choose a category</option>
+                                            <?php
+                                            foreach($products as $product){
+                                            ?>
+                                        <option value="<?= $product['id'] ?>"><?= $product['product_name'] ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                    </select>
+                                </div>
+                                <button class="btn btn-default">Delete</button>
+                            </form>
             </div>
         </div>
     </div>
