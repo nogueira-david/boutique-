@@ -1,0 +1,121 @@
+/* Header background */
+
+.background{
+	margin: 0 auto;
+	margin-top: 30px; 
+	width: 1780px;
+	background-image: url(../img/image_fond_1.jpg);
+	background-size: contain; 
+	height: 80vh;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.picto i{
+	float: right;
+	padding-right: 50px; 
+	padding-top: 30px; 
+	font-size: 1.5rem;
+}
+
+.slogan{
+	text-align: center;
+	padding-top: 15%; 
+}
+
+.background h1{
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold; 
+	font-size: 6rem; 
+}
+
+.background h2{
+	font-family: Segoe UI Historic; 
+	font-weight: bolder; 
+	font-size: 3rem; 
+	margin-top: -30px;
+}
+
+/* carré */
+
+.carre{
+	background-image: url(../img/carre.jpg);
+	background-repeat: no-repeat;
+	height: 310px; 
+	width: 310px;
+	position: absolute;
+ 	z-index: 0;
+ 	margin-left: 590px; 
+ 	margin-top: -40px;
+}
+
+.carre1{
+	background-image: url(../img/carre.jpg);
+	background-repeat: no-repeat;
+	height: 310px; 
+	width: 310px;
+	position: absolute;
+ 	z-index: 0;
+ 	margin-top: -270px;
+ 	margin-left: 200px; 
+}
+
+/* Présentation entreprise */
+
+.container5{
+	padding-top: 150px; 
+	margin: 0 auto;
+	width: 1300px;
+}
+
+.shop p{
+	text-align: center; 
+	font-family: 'Roboto', sans-serif;
+}
+
+.container1{
+	margin: 0 auto;
+	width: 500px;
+}
+
+.container1 p{
+	text-align: center; 
+	border-bottom: 2px solid #232222; 
+	color: white;
+}
+
+.container21{
+	margin: 0 auto;
+	width: 600px;
+	margin-top: 100px;
+	display: grid;
+	grid-template-columns: 300px 300px;  
+	grid-column-gap: 10px;
+	grid-row-gap: 1em;
+	align-self: center;
+  	justify-self: center;
+  	position: relative;
+ 	z-index: 1;
+}
+
+.container3{
+	margin: 0 auto;
+	width: 500px;
+}
+
+.container3 p{
+	text-align: center; 
+	border-bottom: 2px solid #232222; 
+	color: white;
+	margin-top: 100px;
+	margin-bottom: 100px; 
+}
+
+/* Footer */
+
+.container-fluid{
+	background-color: #232222; 
+	height: 10vh;
+}
+
+
