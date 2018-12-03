@@ -1,9 +1,8 @@
 <?php
-require('inc/bdd.php');
+include('inc/top_header.php');
+include('inc/bot_header.php');
 ?>
-<?php
-  session_start();
-  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
