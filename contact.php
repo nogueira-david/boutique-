@@ -4,87 +4,48 @@ require('inc/bdd.php');
 <?php
   session_start();
   ?>
-  
-</head>
-<body style="padding:100px 0 200px 0">
-  <div style="padding-bottom:100px" class="container">
-  <div class="row">
-  <div class="col-md-12">
-  </div>
-  </div>
-  </div>
-<!-- CONTENT -->
-  <div class="container">
-  <?php if(array_key_exists('errors',$_SESSION)): ?>
-  <div class="alert alert-danger">
-  <?= implode('<br>', $_SESSION['errors']); ?>
-  </div>
-  <?php endif; ?>
-  <?php if(array_key_exists('success',$_SESSION)): ?>
-  <div class="alert alert-success">
-  Votre email à bien été transmis !
-  </div>
-  <?php endif; ?>
-<form action="send_form.php" method="post">
-  <div class="row">
-<div class="col-md-6">
-  <div class="form-group">
-  <label for="inputname">Votre nom</label>
-  <input required type="text" name="name" class="form-control" id="inputname" value="<?php echo isset($_SESSION['inputs']['name'])? $_SESSION['inputs']['name'] : ''; ?>">
-  </div><!--/*.form-group-->
-  </div><!--/*.col-md-6-->
-<div class="col-md-6">
-  <div class="form-group">
-  <label for="inputemail">Votre email</label>
-  <input required type="email" name="email" class="form-control" id="inputemail" value="<?php echo isset($_SESSION['inputs']['email'])? $_SESSION['inputs']['email'] : ''; ?>">
-  </div><!--/*.form-group-->
-  </div><!--/*.col-md-6-->
-<div class="col-md-12">
-  <div class="form-group">
-  <label for="inputmessage">Votre message</label>
-  <textarea required id="inputmessage" name="message" class="form-control"><?php echo isset($_SESSION['inputs']['message'])? $_SESSION['inputs']['message'] : ''; ?></textarea>
-  </div><!--/*.form-group-->
-  </div><!--/*.col-md-12-->
-  </div><!--/*.col-md-12-->
-<div class="col-md-12">
-  <button type='submit' class='btn btn-primary'>Envoyer</button>
-  </div><!--/*.col-md-12-->
-</div><!--/*.row-->
-  </form>
-</div><!--/*.container-->
-  <!-- END CONTENT -->
-  <?php
-unset($_SESSION['inputs']); // on nettoie les données précédentes
-  unset($_SESSION['success']);
-  unset($_SESSION['errors']);
-
-?>
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Geocoding service</title>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-        <style>
-           #map {
-            height: 400px;
-            width: 100%;
-           }
-        </style>
-    </head>
-    <body>
-        <?php
-              $select = $connexion->query('SELECT adresse_shop_lat FROM shop');
+<head>
+  <title>Contact</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="contact.css">
+</head>
+<body>
+<section id="contact" class="content-section text-center">
+        <div class="contact-section">
+            <div class="container">
+              <h2>Nous contacter</h2>
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="exampleInputName2">Nom</label>
+                      <input type="text" class="form-control" id="exampleInputName2" placeholder="Contact">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail2">Email</label>
+                      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="contact@shop.com">
+                    </div>
+                    <div class="form-group ">
+                      <label for="exampleInputText">Votre Message</label>
+                     <textarea  class="form-control" placeholder="Description"></textarea> 
+                    </div>
+                    <button type="submit" class="btn btn-default">Envoyer</button>
+                  </form>
+
+                  <?php
+        $select = $connexion->query('SELECT adresse FROM shop');
         $address = $select->fetch();      
             
-            $map_address = $address['adresse_shop_lat'];
-         ?>
-         <form method="POST">
-            <input type="text" name="address">
-            <button type="submit">Afficher</button>
-        </form>
-        <?php 
+            $map_address = $address['adresse'];
             
             $opts = array(
                     'http' => array(
@@ -96,15 +57,12 @@ unset($_SESSION['inputs']); // on nettoie les données précédentes
 
             $url = "https://maps.googleapis.com/maps/api/geocode/json?address={".urlencode($map_address)."}&key=AIzaSyBjslA2cbupRwG-dJvPAKcfZp0ruzEFM38";
 
-            $resultat = json_decode(file_get_contents($url, false, $context), true);
-            ?>
-            <pre>
-                <?php 
+            $resultat = json_decode(file_get_contents($url, false, $context), true);  
 
                 $lat = $resultat['results'][0]['geometry']['location']['lat'];
                 $lng = $resultat['results'][0]['geometry']['location']['lng'];
                 ?>
-            </pre>
+            
             <div id="map"></div>
             <script>
               function initMap() {
@@ -119,11 +77,20 @@ unset($_SESSION['inputs']); // on nettoie les données précédentes
                 });
               }
             </script>
-            <?php
-        
-        ?>
+                    <h3>Nos réseaux sociaux</h3>
+                  <ul class="list-inline banner-social-buttons">
+                    <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+                    <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0xJoi5c9MwYIYQlwIEfLqLh95hLtcaYA&callback=initMap">
         </script>
-    </body>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      </body>
 </html>
