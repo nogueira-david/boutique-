@@ -45,8 +45,8 @@
 	width: 310px;
 	position: absolute;
  	z-index: 0;
- 	margin-left: 590px; 
- 	margin-top: -40px;
+ 	margin-left: 700px; 
+ 	margin-top: -50px;
 }
 
 .carre1{
@@ -56,8 +56,8 @@
 	width: 310px;
 	position: absolute;
  	z-index: 0;
- 	margin-top: -270px;
- 	margin-left: 200px; 
+ 	margin-top: -250px;
+ 	margin-left: 280px; 
 }
 
 /* Présentation entreprise */
@@ -116,6 +116,7 @@
 .container-fluid{
 	background-color: #232222; 
 	height: 10vh;
+	width: 1780px;
 }
 
 
