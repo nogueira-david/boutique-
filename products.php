@@ -1,37 +1,45 @@
 <?php 
- require_once('inc/bdd.php');
+require_once('inc/bdd.php');
 include ('inc/top_header.php');
-  ?>
+?>
 <title>Products</title>
 <link rel="stylesheet" href="css/products.css">
 <?php 
 include ('inc/bot_header.php');
- ?>
-
-
-<form>
-    <label for="recherche">Recherche :</label>
-    <input type="text" name="recherche">
-    <label>Trier par : </label>
-    <select name="order">
-        <option value="none">Trier par</option>
-        <option value="croissant">Prix croissants</option>
-        <option value="decroissant">Prix decroissants</option>
-    </select>
-    <button>Envoyer</button>
-</form>
+?>
+<div id="bj">BJ</div>
+<div class="container m-auto">
+    <div class="col-10 m-auto">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="recherche" class="sr-only">Recherche :</label>
+                <input type="text" name="recherche" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Rechercher...">
+            </div>
+            <div class="form-group">
+                <label class="sr-only">Trier par : </label>
+                <select name="order" class="form-control mb-2 mr-sm-2 mb-sm-0">
+                    <option value="none">Trier par</option>
+                    <option value="croissant">Prix croissants</option>
+                    <option value="decroissant">Prix decroissants</option>
+                </select>
+            </div>
+                <button><i class="fas fa-search"></i></button>
+        </form>
+    </form>
+</div>
+</div>
 <div class="container row m-auto">
 
-<?php
-if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
+    <?php
+    if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
 
-    if (!empty($_GET['recherche'])){
-    $sql = 'SELECT * FROM products WHERE product_name LIKE :recherche';
-} else {
-     $sql = 'SELECT * FROM products';
-}
+        if (!empty($_GET['recherche'])){
+            $sql = 'SELECT * FROM products WHERE product_name LIKE :recherche';
+        } else {
+           $sql = 'SELECT * FROM products';
+       }
 
-    if( $_GET['order'] === "decroissant" ){
+       if( $_GET['order'] === "decroissant" ){
         $sql .= ' ORDER BY price DESC';
     }
 
@@ -45,10 +53,10 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
 
     $articles = $select->fetchAll();
     foreach($articles as $article){
-    ?>
+        ?>
         <article class="col-3">       
             <h2 class="text-center">
-            <p><img src="images_uploadees/miniatures/<?php echo $article['miniature'];?>"></p>
+                <p><img src="images_uploadees/miniatures/<?php echo $article['miniature'];?>"></p>
                 <?php 
 
                 $productNameRecherche = preg_replace('#(' .strip_tags($_GET['recherche']). ')#', "<span style='background-color : #f5dbbe;'>$1</span>" , $article['product_name']);
@@ -56,8 +64,11 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
                 echo $productNameRecherche; ?>
             </h2>
             créé le <?php echo  $article['creation_date']; ?>
-            <p><?php echo  $article['price']. '$'; ?></p>
-            <a href="detail_product.php?id=<?=$article['id']?>"></a>
+            <p>
+                <?php echo  $article['price']. '$'; ?>
+                <a href="detail_product.php?id=<?=$article['id']?>"></a>
+            </p>
+
         </article>
 
 
@@ -65,8 +76,8 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
 
 
 
-    <?php
-    
+        <?php
+
     } 
 } else {
 
@@ -75,20 +86,20 @@ if (!empty($_GET['recherche']) || !empty($_GET['order'])) {
 
     $products = $resultat->fetchAll(PDO::FETCH_ASSOC);
     foreach($products as $product){
-    ?>
+        ?>
         <article>		
             <p><img src="images_uploadees/miniatures/<?php echo $product['picture'];?>"></p>
             <h2>
                 <?php echo $product['product_name']; ?>
             </h2>
             créé le <?php echo  $product['creation_date']; ?>
-            <p><?php echo  $product['price']. '$'; ?></p>
-            <a href="detail_product.php?id=<?=$product['id']?>"> + details</a>
+            <p><?php echo  $product['price']. '$'; ?><a href="detail_product.php?id=<?=$product['id']?>"> + details</a></p>
+            
         </article>
 
-    <?php
+        <?php
     }
 }
-    ?>
+?>
 
 </div>
