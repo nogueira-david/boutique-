@@ -21,7 +21,12 @@ include('inc/bot_header.php');
 <section id="contact" class="content-section text-center">
         <div class="contact-section">
             <div class="container">
-              <h2>Nous contacter</h2>
+                <div class="container1">
+                  <h2>Nous contacter</h2>
+                    <div class="container2">
+                      <p>jjjjjjjjjjjjjj</p>
+                    </div>
+                </div>
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                   <form class="form-horizontal">
@@ -36,8 +41,9 @@ include('inc/bot_header.php');
                     <div class="form-group ">
                       <label for="exampleInputText">Votre Message :</label>
                      <textarea  class="form-control" placeholder="Description"></textarea> 
+
                     </div>
-                    <button type="submit" class="btn btn-default">Envoyer</button>
+                    <button class="btn" type="submit">Envoyer</button>
                   </form>
 
                   <?php
