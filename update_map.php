@@ -18,15 +18,15 @@ require('inc/bdd.php');
         <?php
 
          if (!empty($_POST['address'])) {
-         $update = $connexion->prepare('UPDATE shop SET adresse_shop_lat = :adresse_shop_lat WHERE id_shop = 1');
-         $update->bindValue(":adresse_shop_lat", $_POST['address']);
+         $update = $connexion->prepare('UPDATE shop SET adresse = :adresse WHERE id_shop = 1');
+         $update->bindValue(":adresse", $_POST['address']);
          $update->execute();
 }
 
-        $select = $connexion->query('SELECT adresse_shop_lat FROM shop');
+        $select = $connexion->query('SELECT adresse FROM shop');
         $address = $select->fetch();      
             
-            $map_address = $address['adresse_shop_lat'];
+            $map_address = $address['adresse'];
          ?>
          <form method="POST">
             <input type="text" name="address">
