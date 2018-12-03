@@ -11,4 +11,6 @@ if($_SESSION['role'] === 'ROLE_ADMIN'){ ?>
     <a href="update_map.php">Update map</a>
     <hr>
 
-<?php } ?>
+<?php }else{
+    echo 'vous devez être admin pour accéder à cette page';
+} ?>
