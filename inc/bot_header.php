@@ -18,10 +18,10 @@
                 <a class="nav-link" href="products.php">Products</a>
           </li>
           <li class="nav-item active">
-                <a class="nav-link" href="connexion.php">Log in</a>
+                <a class="nav-link" href="login.php">Log in</a>
           </li>
           <li class="nav-item active">
-                <a class="nav-link" href="inscription.php">Registration</a>
+                <a class="nav-link" href="login.php">Registration</a>
           </li>
       <?php }
         //si connecté
