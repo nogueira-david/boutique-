@@ -15,7 +15,7 @@ require_once('inc/bdd.php'); ?>
                 <?php
                 if(!empty($_POST)){
 
-                	$errors = [];
+                    $errors = [];
 
                     $post = [];
                     foreach($_POST as $key => $value){
@@ -25,15 +25,15 @@ require_once('inc/bdd.php'); ?>
                         }
                     }
                 
-                	if(empty($post['name']) || mb_strlen($post['name']) > 150){
-                		$errors [] = 'invalid name';
-                	}
+                    if(empty($post['name']) || mb_strlen($post['name']) > 150){
+                        $errors [] = 'invalid name';
+                    }
 
-                	if(empty($post['price']) || !preg_match('#^[1-9][0-9]*\$$#', $post['price'])){
-                		$errors [] = 'empty or invalid price';
+                    if(empty($post['price']) || !preg_match('#^[1-9][0-9]*\$$#', $post['price'])){
+                        $errors [] = 'empty or invalid price';
                     }
                     if(!isset($post['availability'])  ){
-                		$available = 0;
+                        $available = 0;
                     }
                     else{
                         $available = 1; 
@@ -112,9 +112,51 @@ require_once('inc/bdd.php'); ?>
                                     }
                     
                                     //------Fin de la création de miniature
-                    
+                                    //------Début resize image principale 
+
+                                    $newWidthFull = 400;
+                                    if($extension === 'jpg' || $extension === 'jpeg'){
+                                        $newImageFull = imagecreatefromjpeg($_FILES['file']['tmp_name']);
+                                    }
+                                    elseif($extension === 'png'){
+                                        $newImageFull = imagecreatefrompng($_FILES['file']['tmp_name']);
+                                    }
+                                    elseif($extension === 'gif'){
+                                        $newImageFull = imagecreatefromgif($_FILES['file']['tmp_name']);
+                                    }
                                     //je peux transférer le fichier sur le serveur
-                                    move_uploaded_file($_FILES['file']['tmp_name'], 'images_uploadees/' . $newName . '.' . $extension);
+                                    move_uploaded_file($_FILES['file']['tmp_name'], 'images_uploadees/tailleOrigine/' . $newName . '.' . $extension);
+
+                                    //je vais devoir calculer la hauteur de l'image Full
+                                    //largeur originale (en px)
+                                    $oldWidth = imagesx($newImageFull);
+                    
+                                    //hauteur originale
+                                    $oldHeight = imagesy($newImageFull);
+                    
+                                    //calcul de la nouvelle hauteur
+                                    $newHeightFull = ($oldHeight * $newWidthFull) / $oldWidth;
+                    
+                                    //je crée une nouvelle image avec les dimensions (nouvelle largeur et nouvelle hauteur)
+                                    $imgFull = imagecreatetruecolor($newWidthFull, $newHeightFull);
+                    
+                                    //on remplit la miniature à partir de l'image originale
+                                    imagecopyresampled($imgFull, $newImageFull, 0, 0, 0, 0, $newWidthFull, $newHeightFull, $oldWidth, $oldHeight);
+                    
+                                    //chemin vers le dossier où je stocke mes images Full
+                                    $folder = 'images_uploadees/';
+                    
+                                    if($extension === 'jpg' || $extension === 'jpeg'){
+                                        imagejpeg($imgFull, $folder . $newName . '.' . $extension);
+                                    }
+                                    elseif($extension === 'png'){
+                                        imagepng($imgFull, $folder . $newName . '.' . $extension);
+                                    }
+                                    elseif($extension === 'gif'){
+                                        imagegif($imgFull, $folder . $newName . '.' . $extension);
+                                    }
+                    
+                                    //------Fin de la création des images Full
                     
                                 }
                                 else{
@@ -133,14 +175,14 @@ require_once('inc/bdd.php'); ?>
                         }
                     }
                                         
-                	if(empty($errors)){
-                		$insert = $connexion->prepare('INSERT INTO products (product_name, price, product_available, creation_date, picture) VALUES (:name, :price, :availability, :creationdate, :picture)');
-                		$insert->bindValue(':name', strip_tags($post['name']));
+                    if(empty($errors)){
+                        $insert = $connexion->prepare('INSERT INTO products (product_name, price, product_available, creation_date, picture) VALUES (:name, :price, :availability, :creationdate, :picture)');
+                        $insert->bindValue(':name', strip_tags($post['name']));
                         $insert->bindValue(':price', strip_tags($post['price']));
                         $insert->bindValue(':availability', $available);
                         $insert->bindValue(':creationdate', date('Y-m-d H:i:s'));
                         $insert->bindValue(':picture', $newName . '.' . $extension);
-                		if($insert->execute()){
+                        if($insert->execute()){
                             echo '<div class="alert alert-success">Article ajouté</div>';
                             $idProduct = $connexion->lastInsertId();
                             $sql = 'INSERT INTO products_has_categories (products_id, categories_id) VALUES ';
@@ -156,34 +198,34 @@ require_once('inc/bdd.php'); ?>
                             }
                             $insert->execute();
 
-                		}
-                		else{
-                			echo 'pb sql';
-                		}
+                        }
+                        else{
+                            echo 'pb sql';
+                        }
 
-                	}
-                	else{
-                		foreach($errors as $error){
-                			echo '<div class="alert alert-danger">' . $error . '</div>';
-                		}
-                	}
+                    }
+                    else{
+                        foreach($errors as $error){
+                            echo '<div class="alert alert-danger">' . $error . '</div>';
+                        }
+                    }
 
                 }
                 
                 ?>
                 <form method="POST" enctype="multipart/form-data">
-                	<div class="form-group">
-                		<label for="name">Product name : </label>
-                		<input type="text" name="name" id="name" class="form-control">
-                	</div>
-                	<div class="form-group">
-                		<label for="price">Price : </label>
-                		<input type="text" name="price" id="price" class="form-control">
-                	</div>
                     <div class="form-group">
-                		<label for="availability">Availability : </label>
-                		<input type="checkbox" name="availability" id="availability" class="form-control">
-                	</div>
+                        <label for="name">Product name : </label>
+                        <input type="text" name="name" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price : </label>
+                        <input type="text" name="price" id="price" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="availability">Availability : </label>
+                        <input type="checkbox" name="availability" id="availability" class="form-control">
+                    </div>
                     <div class="form-group">
                         <input type="file" name="file">
                     </div>
@@ -204,7 +246,7 @@ require_once('inc/bdd.php'); ?>
                                 ?>
                         </select>
                         </div>
-                	<button type="submit" class="btn btn-success">Add</button>
+                    <button type="submit" class="btn btn-success">Add</button>
                 </form>
             </div>
         </div>
