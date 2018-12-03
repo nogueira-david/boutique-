@@ -5,6 +5,8 @@
 		<meta charset="utf-8">
 		<!--CSS-->
 		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<!--Javascript-->
+		<link rel="stylesheet" type="text/css" href="js/home.js">
 		<!--Typographies-->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
 		<!--Bootstrap-->
@@ -16,12 +18,28 @@
 	<body>
 		<!--Header-->
 		<header class="background">
-			<div class="picto">
-				<i class="fas fa-user-alt fa-2x"></i>
-			</div>
-			<div class="slogan">
-				<h1>HELLO</h1>
-				<h2>ONE DAY ONE STYLE</h2>
+			<div id="carousel" class="carousel slide" data-ride="carousel">
+			  <div class="carousel-inner">
+				<div class="picto">
+			    	<i class="fas fa-user-alt fa-2x"></i>
+			    </div>
+				<div class="slogan">
+					<h1>HELLO</h1>
+					<h2>ONE DAY ONE STYLE</h2>
+				</div>
+			    <div class="carousel-item active">
+			      <img class="d-block w-100" src="img/carousel/fond1.jpg" alt="First slide">
+			    </div>
+			    <div class="carousel-item">
+			       <img class="d-block w-100" src="img/carousel/fond2.jpg" alt="Second slide">
+			    </div>
+			    <div class="carousel-item">
+			       <img class="d-block w-100" src="img/carousel/fond3.jpg" alt="Third slide">
+			    </div>
+			    <div class="carousel-item">
+			       <img class="d-block w-100" src="img/carousel/fond4.jpg" alt="Four slide">
+			    </div>
+			  </div>
 			</div>
 		</header>
 
@@ -67,5 +85,13 @@
 		<!--Footer-->
 		<div class="container-fluid">
 		</div>
+		<!--jQuery-->
+		<script src="js/jQuery_v3.3.1.js"></script>
+		<!--Bootstrap.js-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<!-- LIBRAIRIE JS -->
+		<script src="js/home.js"></script>
 	</body>
 </html>

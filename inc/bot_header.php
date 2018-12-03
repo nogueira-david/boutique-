@@ -18,9 +18,6 @@
                 <a class="nav-link" href="products.php">Products</a>
           </li>
           <li class="nav-item active">
-                <a class="nav-link" href="contact.php">Contact</a>
-          </li>
-          <li class="nav-item active">
                 <a class="nav-link" href="connexion.php">Log in</a>
           </li>
           <li class="nav-item active">
