@@ -1,16 +1,14 @@
 <?php 
-require_once('inc/bdd.php');
 include ('inc/top_header.php');
 ?>
 <title>Products</title>
-<link rel="stylesheet" href="css/products.css">
+<link rel="stylesheet" type="text/css" href="css/products.css">
 <?php 
 include ('inc/bot_header.php');
 ?>
-<div id="bj">BJ</div>
 <div class="container m-auto">
-    <div class="col-10 m-auto">
-        <form class="form-inline">
+    <div class="col-6 m-auto">
+        <form class="form-inline mb-5">
             <div class="form-group">
                 <label for="recherche" class="sr-only">Recherche :</label>
                 <input type="text" name="recherche" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Rechercher...">
@@ -23,7 +21,7 @@ include ('inc/bot_header.php');
                     <option value="decroissant">Prix decroissants</option>
                 </select>
             </div>
-                <button><i class="fas fa-search"></i></button>
+                <button><i class="fas fa-search fa-2x"></i></button>
         </form>
     </form>
 </div>
@@ -66,7 +64,7 @@ include ('inc/bot_header.php');
             créé le <?php echo  $article['creation_date']; ?>
             <p>
                 <?php echo  $article['price']. '$'; ?>
-                <a href="detail_product.php?id=<?=$article['id']?>"></a>
+                <p><?php echo  $article['price']. '$'; ?><a href="detail_product.php?id=<?=$article['id']?>"> + details</a></p>
             </p>
 
         </article>
@@ -93,7 +91,10 @@ include ('inc/bot_header.php');
                 <?php echo $product['product_name']; ?>
             </h2>
             créé le <?php echo  $product['creation_date']; ?>
-            <p><?php echo  $product['price']. '$'; ?><a href="detail_product.php?id=<?=$product['id']?>"> + details</a></p>
+            <p>
+                <?php echo  $product['price']. '$'; ?>
+                <a href="detail_product.php?id=<?=$product['id']?>"> + details</a>
+            </p>
             
         </article>
 
