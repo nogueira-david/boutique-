@@ -92,7 +92,7 @@ require_once('inc/bdd.php');
 					?>
 				</select>
 			</div>
-			<button class="btn btn-success">Select</button>
+			<button class="btn btn-secondary">Select</button>
 		</form>
 		<?php
 	}
