@@ -40,7 +40,6 @@ if (empty($_SESSION)) {
 				$_SESSION['email'] = $user[0]['email'];
 				$_SESSION['mdp'] = $user[0]['password'];
 				$_SESSION['role'] = $user[0]['role'];
-				var_dump($_SESSION);
 
 			} else {echo 'erreur connexion';}
 		}
