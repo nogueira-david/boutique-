@@ -251,7 +251,7 @@
 
                             <h2>Edit product</h2>
                         <?php
-                                if(!empty($_POST['id'])){
+                                if(isset($_POST['modif_product'])){
                                     //formulaire de modification envoyé
                                     $post = [];
         
@@ -261,11 +261,11 @@
         
                                     $errors = [];
         
-                                    if(empty($post['product']) || mb_strlen($post['product']) > 20){
+                                    if(empty($post['product_name']) || mb_strlen($post['product_name']) > 20){
                                         $errors[] = 'empty or invalid product '; 
                                     }
 
-                                    if(empty($post['price']) || !preg_match('#^[1-9][0-9]*\$$#', $post['price'])){
+                                    if(empty($post['price']) || !preg_match('#^[1-9][0-9]*$#', $post['price'])){
                                         $errors [] = 'empty or invalid price';
                                     }
 
@@ -287,11 +287,11 @@
                                 
                                     if(empty($errors)){
         
-                                        $update = $connexion->prepare('UPDATE products SET product_name = :name, price = :price, availability = :availability WHERE id = :id');
+                                        $update = $connexion->prepare('UPDATE products SET product_name = :name, price = :price, product_available = :availability WHERE id = :id');
                                         $update->bindValue(':id', $post['id']);
                                         $update->bindValue(':name', $post['product_name']);
                                         $update->bindValue(':price', $post['price']);
-                                        $update->bindValue(':availability', $post['availability']);
+                                        $update->bindValue(':availability', $available);
                                         if($update->execute()){
                                             echo '<p class="alert alert-success">edited category</p>';
                                         }
@@ -350,6 +350,7 @@
                                     <input type="checkbox" name="availability" class="form-control" value="<?= $products['product_available'] ?>">
                                 </div>
                                 <input type="hidden" name="id" value="<?= $_GET['products'] ?>">
+                                <input type="hidden" name="modif_product">
                                 <button type="submit" class="btn btn-info">Edit</button>
                             </form>
 
